@@ -45,7 +45,7 @@ formEl.addEventListener('submit', event => {
     }
 
     event.target.reset();
-    localStorage.clear();
+    // localStorage.removeItem(FEEDBACK_KEY);
   } catch (err) {
     console.log(err.name);
   }
