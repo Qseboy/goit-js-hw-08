@@ -7,26 +7,29 @@ const FEEDBACK_KEY = 'feedback-form-state';
 
 const obj = {};
 
-// check data
 try {
   let data = JSON.parse(localStorage.getItem(FEEDBACK_KEY));
-  if (data) {
+
+  if (data.email) {
     inputEl.value = data.email;
-    messageEl.value = data.message;
+    obj.email = data.email;
   }
-} catch (err) {
-  console.log(err);
-}
+
+  if (data.message) {
+    messageEl.value = data.message;
+    obj.message = data.message;
+  }
+} catch (err) {}
 
 formEl.addEventListener(
   'input',
+
   throttle(event => {
     if (event.target.nodeName === 'INPUT') {
       obj.email = event.target.value;
       localStorage.setItem(FEEDBACK_KEY, JSON.stringify(obj));
       return;
     }
-
     obj.message = event.target.value;
     localStorage.setItem(FEEDBACK_KEY, JSON.stringify(obj));
   }, 500)
@@ -35,7 +38,12 @@ formEl.addEventListener(
 formEl.addEventListener('submit', event => {
   try {
     event.preventDefault();
-    console.log(JSON.parse(localStorage.getItem(FEEDBACK_KEY)));
+    console.log(obj);
+
+    for (key in obj) {
+      delete obj[key];
+    }
+
     localStorage.removeItem(FEEDBACK_KEY);
     event.target.reset();
   } catch (err) {
