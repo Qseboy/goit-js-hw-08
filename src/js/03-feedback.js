@@ -39,9 +39,9 @@ formEl.addEventListener('submit', event => {
   event.preventDefault();
   console.log(obj);
 
-  // for (key in obj) {
-  //   delete obj[key];
-  // }
+  for (key in obj) {
+    delete obj[key];
+  }
   localStorage.removeItem(FEEDBACK_KEY);
   event.target.reset();
 });
