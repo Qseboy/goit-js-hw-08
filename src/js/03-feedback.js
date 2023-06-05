@@ -36,16 +36,12 @@ formEl.addEventListener(
 );
 
 formEl.addEventListener('submit', event => {
-  try {
-    event.preventDefault();
-    console.log(obj);
+  event.preventDefault();
+  console.log(obj);
 
-    // for (key in obj) {
-    //   delete obj[key];
-    // }
-    localStorage.removeItem(FEEDBACK_KEY);
-    event.target.reset();
-  } catch (err) {
-    console.log(err.name);
-  }
+  // for (key in obj) {
+  //   delete obj[key];
+  // }
+  localStorage.removeItem(FEEDBACK_KEY);
+  event.target.reset();
 });
